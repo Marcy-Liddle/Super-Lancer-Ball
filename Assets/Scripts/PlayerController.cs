@@ -81,9 +81,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // if statement to make any surface tagged "ground" set playerGrounded to true when the player collides with it
         if (collision.gameObject.tag == "Ground")
         {
             playerGrounded = true;
         }
+
     }
 }
