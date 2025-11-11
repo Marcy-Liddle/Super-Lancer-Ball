@@ -319,6 +319,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -1.5
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a05bcb79869836543983c2c2e7fc0d30, type: 2}
     - target: {fileID: -4162384131332465578, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -384,6 +388,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4009919297422567556, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1489331890}
+    - targetCorrespondingSourceObject: {fileID: -8391222552659086748, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1078190374}
   m_SourcePrefab: {fileID: 100100000, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
 --- !u!1 &330585543
 GameObject:
@@ -905,6 +912,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: -1
   m_Mesh: {fileID: 0}
+--- !u!1 &1078190370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8391222552659086748, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
+  m_PrefabInstance: {fileID: 328158841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1078190374
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078190370}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
 --- !u!1 &1114778484 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7792742002420497935, guid: ef33ec9161b83e94bb42d64293bd8a40, type: 3}
