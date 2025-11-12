@@ -7,12 +7,9 @@ using System.Linq.Expressions;
 using JetBrains.Annotations;
 using Unity.Jobs;
 using UnityEngine.Rendering;
-using System.Reflection;
-using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerController player;
 
     // Declaring public variables
     public float speed;
@@ -20,8 +17,8 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public TextMeshProUGUI countText;
     public GameObject winTextObject;
-    public bool playerGrounded;
-    
+    public Transform spawnPoint;
+
     public static int count;
 
     // Declaring private variables
@@ -29,12 +26,16 @@ public class PlayerController : MonoBehaviour
     private float movementX;
     private float movementY;
     private bool boostActive = false;
+    private bool playerGrounded;
+    private bool inRespawn = false;
 
     // Audio Variables
     private AudioSource source;
     public AudioClip pickupSound;
     public AudioClip playerBoost;
     public AudioClip jumpSound;
+
+
 
 
 
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
         // Player Movement
         Vector3 movement = new Vector3(movementX, 0.0f, movementY); // Takes in user input of WASD and applies that to the x-axis and z-axis
 
-        rb.AddForce(movement * speed); // Multiples players movement by the speed variable that is set in the unity inspector
+        rb.AddForce(movement * speed); // Multiplies players movement by the speed variable that is set in the unity inspector
     }
 
     private void Update()
@@ -86,6 +87,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        while (inRespawn == true)
+        {
+            transform.position = spawnPoint.position;
+            inRespawn = false;
+        }
 
     }
 
@@ -110,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
             source.PlayOneShot(pickupSound, 1.0f); // Plays sound effect
 
-            count = count * 2; // Adds 100 to players points
+            count = count * 2; // Multiplies players score by 1.5
             SetCountText(); // Updates text to display points
         }
     }
@@ -153,6 +159,14 @@ public class PlayerController : MonoBehaviour
                 case > 60: count += 1000; break;
                 default: break;
             }
+            SetCountText();
+        }
+
+        if (collision.gameObject.name == "outOfBounds")
+        {
+            inRespawn = true;
+            count = count - 500;
+            SetCountText(); // Updates text to display points
 
         }
     }
@@ -160,8 +174,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator BoostDuration()
     {
-        // Coroutine to stop boost
-        Debug.Log("Start coroutine");
+        // Coroutine to stop boost so player loses momentum when colliding with non-pick-up objects
+        Debug.Log("Start BoostDuration Coroutine");
         // Checks that boost is active
         if (boostActive == true)
         {
@@ -170,7 +184,6 @@ public class PlayerController : MonoBehaviour
             speed /= speedBoost; // Divides speed by speedBoost to set speed to base value
         }
         Debug.Log("End coroutine");
-        Debug.Log("Current speed is " + speed);
-    }
 
+    }
 }
