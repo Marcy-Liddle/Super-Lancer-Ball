@@ -130,11 +130,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // Checks object player collides with is named "Boost Pad"
-        if (collision.gameObject.name == "Boost Pad")
+        if (collision.gameObject.tag == "Boost Pad")
         {
             // Player Boost
             speed *= speedBoost; // Multiples speed variable by speedBoost
-            source.PlayOneShot(playerBoost, 0.5f); // Plays sound effect
+            source.PlayOneShot(playerBoost, 0.25f); // Plays sound effect
             boostActive = true;
             StartCoroutine(BoostDuration()); // Starts coroutine
         }
